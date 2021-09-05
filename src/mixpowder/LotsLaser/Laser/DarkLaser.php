@@ -46,6 +46,6 @@ class DarkLaser extends Laser{
      * @param Entity $entity
      */
     public function specialEffect(Level $level, Player $player, Entity $entity){
-        $entity->addEffect(new EffectInstance(Effect::getEffect(19),4*20,5,true));
+        $entity->addEffect(new EffectInstance(Effect::getEffect(19), 4 * 20, 5, true));
     }
 }

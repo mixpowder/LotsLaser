@@ -42,6 +42,6 @@ class LaunchLaser extends Laser{
      * @param Entity $entity
      */
     public function specialEffect(Level $level, Player $player, Entity $entity){
-        $entity->setMotion(new Vector3(0,2,0));
+        $entity->setMotion(new Vector3(0, 2, 0));
     }
 }

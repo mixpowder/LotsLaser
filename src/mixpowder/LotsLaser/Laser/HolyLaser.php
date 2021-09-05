@@ -43,6 +43,6 @@ class HolyLaser extends Laser{
      * @param Entity $entity
      */
     public function specialEffect(Level $level, Player $player, Entity $entity){
-        $player->setHealth($player->getHealth()+($this->damage/5));
+        $player->setHealth($player->getHealth() + ($this->damage / 5));
     }
 }

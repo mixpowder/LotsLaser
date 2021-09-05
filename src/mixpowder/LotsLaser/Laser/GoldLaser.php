@@ -33,7 +33,7 @@ class GoldLaser extends Laser{
      * @param Vector3 $pos
      */
     public function particle(Vector3 $pos){
-        return new DustParticle($pos, 250,215,0);
+        return new DustParticle($pos, 250, 215, 0);
     }
     
     /**
@@ -42,6 +42,6 @@ class GoldLaser extends Laser{
      * @param Entity $entity
      */
     public function specialEffect(Level $level, Player $player, Entity $entity){
-        $level->dropItem(new Vector3($entity->x,$entity->y,$entity->z),Item::get(41,0));
+        $level->dropItem(new Vector3($entity->x ,$entity->y ,$entity->z), Item::get(41,0));
     }
 }

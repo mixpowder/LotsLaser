@@ -35,7 +35,7 @@ class RainbowLaser extends Laser{
      * @return DustParticle
      */
     public function particle(Vector3 $pos){
-        return new DustParticle($pos, rand(0,255), rand(0,255), rand(0,255));
+        return new DustParticle($pos, rand(0, 255), rand(0, 255), rand(0, 255));
     }
     
     /**
@@ -44,6 +44,6 @@ class RainbowLaser extends Laser{
      * @param Entity $entity
      */
     public function specialEffect(Level $level, Player $player, Entity $entity){
-        $level->addParticle(new HugeExplodeParticle(new Vector3($entity->x,$entity->y + 1,$entity->z)));
+        $level->addParticle(new HugeExplodeParticle(new Vector3($entity->x, $entity->y + 1, $entity->z)));
     }
 }

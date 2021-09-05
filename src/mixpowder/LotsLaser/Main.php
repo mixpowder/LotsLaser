@@ -25,18 +25,15 @@ class Main extends PluginBase implements Listener{
     public function ontap(PlayerInteractEvent $event){
         $player = $event->getPlayer();
         if($player->getInventory()->getItemInHand()->getCustomName() == "RainbowLaser"){
-            (new RainbowLaser($player,10,0.4,20))->execute();
+            (new RainbowLaser($player, 10, 0.4, 20))->execute();
         }elseif($player->getInventory()->getItemInHand()->getCustomName() == "DarkLaser"){
-            (new DarkLaser($player,10,0.4,100))->execute();
+            (new DarkLaser($player, 10, 0.4, 100))->execute();
         }elseif($player->getInventory()->getItemInHand()->getCustomName() == "HolyLaser"){
-            (new HolyLaser($player,10,0.4,100))->execute();
+            (new HolyLaser($player, 10, 0.4, 100))->execute();
         }elseif($player->getInventory()->getItemInHand()->getCustomName() == "GoldLaser"){
-            (new GoldLaser($player,10,0.4,10))->execute();   
+            (new GoldLaser($player, 10, 0.4, 10))->execute();   
         }elseif($player->getInventory()->getItemInHand()->getCustomName() == "LaunchLaser"){
-            (new LaunchLaser($player,10,0.4,10))->execute();   
+            (new LaunchLaser($player, 10, 0.4, 10))->execute();   
         }
     }
-    
-    
-
 }
