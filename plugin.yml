@@ -1,0 +1,6 @@
+---
+name: LotsLaser
+version: 0.0.1
+main: mixpowder\LotsLaser\Main
+api: 3.21.0
+...
