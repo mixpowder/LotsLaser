@@ -32,11 +32,12 @@ class Laser {
                 $entities[] = $entity;
             }
         }
+        
          for($i = 1; $i < $distance; $i++){
             $pos = new Vector3((($sin * $i) + $sin) + $x,$y - $tan * $i,(($cos * $i) + $cos) + $z);
             $level->addParticle($class->particle($pos));
-            
-            for($n = 0; $n < count($entities); $n++){
+            $count = count($entities);
+            for($n = 0; $n < $count; $n++){
                 if($entities[$n]->distance($pos) < 2.5){
                     $event = new EntityDamageByEntityEvent($player, $entities[$n], EntityDamageEvent::CAUSE_PROJECTILE, $damage, [], $knockback);
                     $entities[$n]->attack($event);
@@ -44,7 +45,10 @@ class Laser {
                     unset($entities[$n]);
                 }
             }
-            $entities = array_values($entities);
+            var_dump(count($entities).":".$count);
+            if(!(count($entities) == $count)){
+                $entities = array_values($entities);
+            }
          }
     }
 }
