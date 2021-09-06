@@ -11,6 +11,7 @@ use mixpowder\LotsLaser\Laser\DarkLaser;
 use mixpowder\LotsLaser\Laser\HolyLaser;
 use mixpowder\LotsLaser\Laser\GoldLaser;
 use mixpowder\LotsLaser\Laser\LaunchLaser;
+use mixpowder\LotsLaser\Laser\FireLaser;
 
 class Main extends PluginBase implements Listener{
     
@@ -33,7 +34,9 @@ class Main extends PluginBase implements Listener{
         }elseif($player->getInventory()->getItemInHand()->getCustomName() == "GoldLaser"){
             (new GoldLaser($player, 10, 0.4, 10))->execute();   
         }elseif($player->getInventory()->getItemInHand()->getCustomName() == "LaunchLaser"){
-            (new LaunchLaser($player, 10, 0.4, 10))->execute();   
+            (new LaunchLaser($player, 1, 0, 10))->execute();   
+        }elseif($player->getInventory()->getItemInHand()->getCustomName() == "FireLaser"){
+            (new FireLaser($player, 5, 0, 100))->execute();   
         }
     }
 }

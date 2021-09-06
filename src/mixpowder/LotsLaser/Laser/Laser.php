@@ -26,28 +26,25 @@ class Laser {
         $x = $player->getX();
         $y = $player->getY() + 1;
         $z = $player->getZ();
+        $entities = [];
+        foreach($level->getEntities() as $entity){
+            if(!($entity instanceof ItemEntity) && $player->getName() != $entity->getName()){
+                $entities[] = $entity;
+            }
+        }
          for($i = 1; $i < $distance; $i++){
             $pos = new Vector3((($sin * $i) + $sin) + $x,$y - $tan * $i,(($cos * $i) + $cos) + $z);
             $level->addParticle($class->particle($pos));
-            $this->check($level, $player, $damage, $knockback, $pos, $class);
-         }
-    }
-
-    /**
-     * @param Level $level
-     * @param Player $player
-     * @param int $damage
-     * @param float $knockback
-     * @param Vector3 $pos
-     * @param type $class
-     */
-    public function check(Level $level, Player $player, int $damage, float $knockback, Vector3 $pos, $class){
-        foreach($level->getEntities() as $entity){
-            if(!($entity instanceof ItemEntity) && $entity->distance($pos) < 2.5 && $player->getName() != $entity->getName()){
-                $event = new EntityDamageByEntityEvent($player, $entity, EntityDamageEvent::CAUSE_PROJECTILE, $damage, [], $knockback);
-                $class->specialEffect($level, $player, $entity);
-                $entity->attack($event);
+            
+            for($n = 0; $n < count($entities); $n++){
+                if($entities[$n]->distance($pos) < 2.5){
+                    $event = new EntityDamageByEntityEvent($player, $entities[$n], EntityDamageEvent::CAUSE_PROJECTILE, $damage, [], $knockback);
+                    $entities[$n]->attack($event);
+                    $class->specialEffect($level, $player, $entities[$n]);
+                    unset($entities[$n]);
+                }
             }
-        }
+            $entities = array_values($entities);
+         }
     }
 }
