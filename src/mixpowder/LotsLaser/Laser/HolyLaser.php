@@ -20,18 +20,18 @@ class HolyLaser extends Laser{
     }
     
     public function execute(){
-        parent::excute($this->level, $this->player, $this->getDamage(), $this->getKnockback(), $this->getDistance(), $this);
+        parent::shoot($this->level, $this->player, $this);
     }
     
-    private function getDamage(): int{
+    public function getDamage(): int{
         return 10;
     }
     
-    private function getKnockback(): float{
+    public function getKnockback(): float{
         return 0.4;
     }
     
-    private function getDistance(): int{
+    public function getDistance(): int{
         return 20;
     }
     
