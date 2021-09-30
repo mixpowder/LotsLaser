@@ -8,8 +8,8 @@ use pocketmine\level\Level;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\entity\object\ItemEntity;
+
 class Laser {
-   
     
     /**
      * @param Level $level
@@ -45,7 +45,6 @@ class Laser {
                     unset($entities[$n]);
                 }
             }
-            var_dump(count($entities).":".$count);
             if(!(count($entities) == $count)){
                 $entities = array_values($entities);
             }

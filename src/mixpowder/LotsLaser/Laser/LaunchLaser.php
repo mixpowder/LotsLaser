@@ -12,20 +12,26 @@ class LaunchLaser extends Laser{
     
     /**
      * @param Player $player
-     * @param int $damage
-     * @param float $knockback
-     * @param int $distance
      */
-    public function __construct(Player $player, int $damage, float $knockback, int $distance){
+    public function __construct(Player $player){
         $this->level = $player->getLevel();
         $this->player = $player;
-        $this->damage = $damage;
-        $this->knockback = $knockback;
-        $this->distance = $distance;
     }
     
     public function execute(){
-        parent::excute($this->level, $this->player, $this->damage, $this->knockback, $this->distance, $this);
+        parent::excute($this->level, $this->player, $this->getDamage(), $this->getKnockback(), $this->getDistance(), $this);
+    }
+    
+    private function getDamage(): int{
+        return 10;
+    }
+    
+    private function getKnockback(): float{
+        return 0.4;
+    }
+    
+    private function getDistance(): int{
+        return 20;
     }
     
     /**

@@ -6,13 +6,6 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\Listener;
 
-use mixpowder\LotsLaser\Laser\RainbowLaser;
-use mixpowder\LotsLaser\Laser\DarkLaser;
-use mixpowder\LotsLaser\Laser\HolyLaser;
-use mixpowder\LotsLaser\Laser\GoldLaser;
-use mixpowder\LotsLaser\Laser\LaunchLaser;
-use mixpowder\LotsLaser\Laser\FireLaser;
-
 class Main extends PluginBase implements Listener{
     
     public function onEnable() {
@@ -24,19 +17,18 @@ class Main extends PluginBase implements Listener{
      * @param PlayerInteractEvent $event
      */
     public function ontap(PlayerInteractEvent $event){
-        $player = $event->getPlayer();
-        if($player->getInventory()->getItemInHand()->getCustomName() == "RainbowLaser"){
-            (new RainbowLaser($player, 10, 0.4, 20))->execute();
-        }elseif($player->getInventory()->getItemInHand()->getCustomName() == "DarkLaser"){
-            (new DarkLaser($player, 10, 0.4, 100))->execute();
-        }elseif($player->getInventory()->getItemInHand()->getCustomName() == "HolyLaser"){
-            (new HolyLaser($player, 10, 0.4, 100))->execute();
-        }elseif($player->getInventory()->getItemInHand()->getCustomName() == "GoldLaser"){
-            (new GoldLaser($player, 10, 0.4, 10))->execute();   
-        }elseif($player->getInventory()->getItemInHand()->getCustomName() == "LaunchLaser"){
-            (new LaunchLaser($player, 1, 0, 10))->execute();   
-        }elseif($player->getInventory()->getItemInHand()->getCustomName() == "FireLaser"){
-            (new FireLaser($player, 5, 0, 100))->execute();   
+       $player = $event->getPlayer();
+        $itemname = $player->getInventory()->getItemInHand()->getCustomName();
+        $class = "mixpowder\\LotsLaser\\Laser\\$itemname";
+        switch($itemname){
+            case "RainbowLaser":
+            case "DarkLaser":
+            case "HolyLaser":
+            case "GoldLaser":    
+            case "LaunchLaser":
+            case "FireLaser":
+                (new $class($player))->execute();
+                break;
         }
     }
 }
