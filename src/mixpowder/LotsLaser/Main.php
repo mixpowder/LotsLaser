@@ -24,7 +24,7 @@ class Main extends PluginBase implements Listener{
             case "RainbowLaser":
             case "DarkLaser":
             case "HolyLaser":
-            case "GoldLaser":    
+            case "GoldLaser":
             case "LaunchLaser":
             case "FireLaser":
                 (new $class($player))->execute();
