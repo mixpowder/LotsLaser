@@ -1,57 +1,62 @@
 <?php
 
-namespace mixpowder\LotsLaser\Laser;
+namespace mixpowder\LotsLaser\Lasers;
 
-use pocketmine\level\Level;
-use pocketmine\Player;
-use pocketmine\math\Vector3;
+use pocketmine\player\Player;
 use pocketmine\entity\Entity;
 
-use mixpowder\LotsLaser\Particle\DragonBreathParticle;
-
+use mixpowder\LotsLaser\Particles\DragonBreathParticle;
 use pocketmine\entity\EffectInstance;
 use pocketmine\entity\Effect;
 
-class DarkLaser extends Laser{
+use mixpowder\LotsLaser\Interfaces\ILazer;
+
+class DarkLaser extends Laser implements ILazer{
     
     /**
      * @param Player $player
      */
     public function __construct(Player $player){
-        $this->level = $player->getLevel();
+        $this->world = $player->getWorld();
         $this->player = $player;
     }
     
     public function execute(){
-        parent::shoot($this->level, $this->player, $this);
+        parent::shoot($this->world, $this->player, $this);
     }
     
+    /**
+     * @return int
+     */
     public function getDamage(): int{
         return 10;
     }
     
+    /**
+     * @return float
+     */
     public function getKnockback(): float{
         return 0.4;
     }
     
+    /**
+     * @return int
+     */
     public function getDistance(): int{
         return 20;
     }
     
     /**
-     * @param Vector3 $pos
      * @return DragonBreathParticle
      */
-    public function particle(Vector3 $pos){
-        return new DragonBreathParticle($pos);
+    public function getParticle(){
+        return new DragonBreathParticle();
     }
     
     /**
-     * @param Level $level
-     * @param Player $player
      * @param Entity $entity
      */
-    public function specialEffect(Level $level, Player $player, Entity $entity){
+    public function specialEffect(Entity $entity){
         $entity->addEffect(new EffectInstance(Effect::getEffect(19), 4 * 20, 5, true));
     }
 }

@@ -4,22 +4,23 @@ namespace mixpowder\LotsLaser;
 
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\player\PlayerInteractEvent;
+use pocketmine\event\player\PlayerItemUseEvent;
 use pocketmine\event\Listener;
 
 class Main extends PluginBase implements Listener{
     
-    public function onEnable() {
+    public function onEnable(): void{
         $this->getLogger()->notice("起動");
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
     
     /**
-     * @param PlayerInteractEvent $event
+     * @param PlayerItemUseEvent $event
      */
-    public function ontap(PlayerInteractEvent $event){
+    public function ontap(PlayerItemUseEvent $event){
        $player = $event->getPlayer();
         $itemname = $player->getInventory()->getItemInHand()->getCustomName();
-        $class = "mixpowder\\LotsLaser\\Laser\\$itemname";
+        $class = "mixpowder\\LotsLaser\\Lasers\\$itemname";
         switch($itemname){
             case "RainbowLaser":
             case "DarkLaser":
